@@ -6,7 +6,6 @@ import Feedback from "../Feedback/Feedback";
 import Notification from "../Notification/Notification";
 
 const App = () => {
-  const [visible, setVisible] = useState(false);
   const [clicks, setClicks] = useState(() => {
     const savedClicks = JSON.parse(localStorage.getItem("saved-clicks"));
     return savedClicks ? savedClicks : { good: 0, neutral: 0, bad: 0 };

@@ -1,4 +1,4 @@
-import React from "react";
+
 import css from "../Notification/Notification.module.css";
 
 const Notification = () => {
