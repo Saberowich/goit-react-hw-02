@@ -1,0 +1,10 @@
+.containerFeedback {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.textFeedback {
+  margin: 0;
+}

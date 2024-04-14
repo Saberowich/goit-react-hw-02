@@ -1,0 +1,12 @@
+.btnContainer {
+  display: flex;
+  gap: 6px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.btnOption {
+  background-color: rgb(205, 203, 203);
+  border: 1px solid gray;
+  cursor: pointer;
+}
