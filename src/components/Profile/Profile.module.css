@@ -1,0 +1,82 @@
+body {
+  background-color: #ffffff;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-style: none;
+}
+.profileContainer {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+.profileImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+.avatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  margin-top: 20px;
+}
+.userName {
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.72px;
+}
+
+.userTag {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.6px;
+  letter-spacing: 0.48px;
+  color: dimgray;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.profileList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  border-top: 4px solid gray;
+  background-color: LightGray;
+  border-radius: 0 0 9px 9px;
+  height: 90px;
+}
+
+.profileListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+  font-family: Roboto;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.value {
+  font-family: Roboto;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.72px;
+  text-transform: capitalize;
+}
