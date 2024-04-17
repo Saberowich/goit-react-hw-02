@@ -22,26 +22,31 @@ const App = () => {
   const totalClicks = clicks.good + clicks.neutral + clicks.bad;
 
   const positiveFeedback = Math.round(
-    ((clicks.good + clicks.neutral) / totalClicks) * 100
+    ((clicks.good) / clicks.bad) * 100
   );
 
-  const updateClickGood = () => {
+
+
+ const updateClick = (Options) =>{
+  if (onClickGood){
     setClicks({ ...clicks, good: clicks.good + 1 });
-  };
-  const updateClickNeutral = () => {
+  }
+  else if (onClickNeutral){
     setClicks({ ...clicks, neutral: clicks.neutral + 1 });
-  };
-  const updateClickBad = () => {
+  }
+  else {
     setClicks({ ...clicks, bad: clicks.bad + 1 });
-  };
+  }
+ }
+
 
   return (
     <>
       <Description />
       <Options
-        onClickGood={updateClickGood}
-        onClickNeutral={updateClickNeutral}
-        onClickBad={updateClickBad}
+        onClickGood={updateClick}
+        onClickNeutral={updateClick}
+        onClickBad={updateClick}
         onClickReset={handleReset}
         hasFeedback={totalClicks > 0}
       />
