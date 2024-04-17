@@ -25,28 +25,39 @@ const App = () => {
     ((clicks.good) / clicks.bad) * 100
   );
 
-
-
- const updateClick = (Options) =>{
-  if (onClickGood){
+  const updateClickGood = () => {
     setClicks({ ...clicks, good: clicks.good + 1 });
-  }
-  else if (onClickNeutral){
+  };
+  const updateClickNeutral = () => {
     setClicks({ ...clicks, neutral: clicks.neutral + 1 });
-  }
-  else {
+  };
+  const updateClickBad = () => {
     setClicks({ ...clicks, bad: clicks.bad + 1 });
-  }
- }
+  };
 
+
+  // const updateClick = (Options) =>{
+  //   if (onClickGood){
+  //     setClicks({ ...clicks, good: clicks.good + 1 });
+  //   }
+  //   else if (onClickNeutral){
+  //     setClicks({ ...clicks, neutral: clicks.neutral + 1 });
+  //   }
+  //   else if (onClickBad){
+  //     setClicks({ ...clicks, bad: clicks.bad + 1 });
+  //   }
+  //   else {
+  //     console.log(kekw)
+  //   }
+  //  }
 
   return (
     <>
       <Description />
       <Options
-        onClickGood={updateClick}
-        onClickNeutral={updateClick}
-        onClickBad={updateClick}
+        onClickGood={updateClickGood}
+        onClickNeutral={updateClickNeutral}
+        onClickBad={updateClickBad}
         onClickReset={handleReset}
         hasFeedback={totalClicks > 0}
       />
