@@ -1,74 +1,48 @@
 
-import { useState, useEffect } from "react";
-import Description from "../Description/Description";
-import Options from "../Options/Options";
-import Feedback from "../Feedback/Feedback";
-import Notification from "../Notification/Notification";
-
+import './App.css';
+import Feedback from '../Feedback/Feedback';
+import Options from '../Options/Options'
+import Description from '../Description/Description';
+import Notification from '../Notification/Notification';
+import { useState } from 'react';
+import { useEffect } from 'react';
 const App = () => {
-  const [clicks, setClicks] = useState(() => {
-    const savedClicks = JSON.parse(localStorage.getItem("saved-clicks"));
-    return savedClicks ? savedClicks : { good: 0, neutral: 0, bad: 0 };
-  });
+  const [reviews, setReviews] = useState(
+    JSON.parse(localStorage.getItem('reviews')) ||{ good: 0, neutral: 0, bad: 0 });
 
-  const handleReset = () => {
-    setClicks({ good: 0, neutral: 0, bad: 0 });
+ useEffect(() => {
+    localStorage.setItem('reviews', JSON.stringify(reviews));
+  }, [reviews]); 
+  
+  const updateFeedback = (feedbackType) => {
+    setReviews((prevReviews) => ({
+      ...prevReviews,
+      [feedbackType]: prevReviews[feedbackType] + 1,
+    }));
   };
-
-  useEffect(() => {
-    window.localStorage.setItem("saved-clicks", JSON.stringify(clicks));
-  }, [clicks]);
-
-  const totalClicks = clicks.good + clicks.neutral + clicks.bad;
-
-  const positiveFeedback = Math.round(
-    ((clicks.good) / clicks.bad) * 100
-  );
-
-  const updateClickGood = () => {
-    setClicks({ ...clicks, good: clicks.good + 1 });
+ 
+  const totalFeedback = reviews.good + reviews.neutral + reviews.bad;
+  const notNeutralFeedback = reviews.good + reviews.bad;
+  const hasFeedback = totalFeedback > 0;
+const positive = Math.round((reviews.good/ notNeutralFeedback) * 100);
+  const resetFeedback = () => {
+    setReviews({ good: 0, neutral: 0, bad: 0 });
   };
-  const updateClickNeutral = () => {
-    setClicks({ ...clicks, neutral: clicks.neutral + 1 });
-  };
-  const updateClickBad = () => {
-    setClicks({ ...clicks, bad: clicks.bad + 1 });
-  };
-
-
-  // const updateClick = (Options) =>{
-  //   if (onClickGood){
-  //     setClicks({ ...clicks, good: clicks.good + 1 });
-  //   }
-  //   else if (onClickNeutral){
-  //     setClicks({ ...clicks, neutral: clicks.neutral + 1 });
-  //   }
-  //   else if (onClickBad){
-  //     setClicks({ ...clicks, bad: clicks.bad + 1 });
-  //   }
-  //   else {
-  //     console.log(kekw)
-  //   }
-  //  }
-
+ 
+  
   return (
     <>
       <Description />
       <Options
-        onClickGood={updateClickGood}
-        onClickNeutral={updateClickNeutral}
-        onClickBad={updateClickBad}
-        onClickReset={handleReset}
-        hasFeedback={totalClicks > 0}
+        firstButton='Good'
+        secondButton='Neutral'
+        thirdButton='Bad'
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
       />
-      {totalClicks > 0 ? (
-        <Feedback
-          stateGood={clicks.good}
-          stateNeutral={clicks.neutral}
-          stateBad={clicks.bad}
-          stateTotal={totalClicks}
-          statePositive={positiveFeedback}
-        />
+      {hasFeedback ? (
+        <Feedback reviews={reviews} total={totalFeedback} positive={positive} />
       ) : (
         <Notification />
       )}
@@ -76,4 +50,5 @@ const App = () => {
   );
 };
 
-export default App;
+
+export default App
